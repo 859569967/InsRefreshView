@@ -110,9 +110,6 @@
 - (void) indicatorAnimated {
     self->_isRefresh = YES;
 
-    UIEdgeInsets inset = _scrollView.contentInset;
-    _scrollView.contentInset = UIEdgeInsetsMake(inset.top + kInsRefreshViewHeight, inset.left, inset.bottom, inset.right);
-
     __weak typeof(self) weakSelf = self;
     // Animated the indicator view.
     [UIView animateWithDuration:.25 animations:^{
@@ -120,6 +117,9 @@
         CGRect frame = _indicator.frame;
         frame.origin.y += kInsRefreshViewHeight;
         _indicator.frame = frame;
+
+        UIEdgeInsets inset = _scrollView.contentInset;
+        _scrollView.contentInset = UIEdgeInsetsMake(inset.top + kInsRefreshViewHeight, inset.left, inset.bottom, inset.right);
 
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:.25 delay:.25 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
