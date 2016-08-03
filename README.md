@@ -2,6 +2,27 @@
 InsRefreshView for tablView refresh, like facebook refresh
 
 ```objc
+InsRefreshView * ins = [InsRefreshView viewWithScroll:self.tableView];
+
+    [ins setTriggeredRefresh:^(InsRefreshView * r) {
+        NSLog(@"refresh begin .");
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [r endinRefresh];
+        });
+    }];
+
+    [ins setTriggeredLoadMore:^(InsRefreshView * r) {
+        NSLog(@"load more");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [r endinLoadMore];
+        });
+    }];
+
+    [ins beginRefresh];
+```
+
+```objc
 
 /**
  初始化方法, 对scrollView的contentOffset属性做了监听
