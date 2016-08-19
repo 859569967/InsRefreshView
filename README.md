@@ -1,6 +1,8 @@
 # InsRefreshView
 InsRefreshView for tablView refresh, like facebook refresh
 
+![](http://um.devdylan.cn/refreshView.gif)
+
 ```objc
 InsRefreshView * ins = [InsRefreshView viewWithScroll:self.tableView];
 
